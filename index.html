@@ -107,12 +107,26 @@
     box-shadow: 0 30px 80px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .25);
     overflow: hidden;
   }
+  .app + .app { margin-top: 24px; }
+  .app--pop { background: radial-gradient(520px 280px at 100% 0%, rgba(255, 77, 94, .16), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
+  .app--bibo { background: radial-gradient(520px 280px at 100% 0%, rgba(255, 211, 77, .17), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
   .app-head { display: flex; align-items: center; gap: 26px; }
   .icon {
     flex: none; width: 124px; height: 124px; border-radius: 28px;
     box-shadow: 0 14px 32px rgba(0, 0, 0, .4), 0 0 0 1px rgba(255, 255, 255, .18);
   }
   .app h2 { margin: 0 0 6px; font-size: clamp(24px, 3.4vw, 32px); font-weight: 800; letter-spacing: -.01em; }
+  .title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 6px; }
+  .title-row h2 { margin: 0; }
+  .soon {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 13px; border-radius: 999px;
+    font-size: 13px; font-weight: 800; color: #0b1633;
+    background: linear-gradient(180deg, #a6f5ee, #5fd9d0);
+    box-shadow: 0 6px 18px rgba(95, 217, 208, .35), inset 0 1px 0 rgba(255, 255, 255, .6);
+  }
+  .soon::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #0b1633; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .25; } }
   .app p { margin: 0 0 18px; color: var(--muted); font-size: 17px; line-height: 1.5; }
 
   .links { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -133,6 +147,9 @@
     box-shadow: 0 10px 24px rgba(255, 197, 49, .35), inset 0 1px 0 rgba(255, 255, 255, .65);
   }
   .btn.primary:hover { background: linear-gradient(180deg, #ffe895, #ffcd4a); }
+  /* Henüz yayında olmayan uygulamanın düğmeleri: görünür ama tıklanmaz */
+  .links.is-off { cursor: not-allowed; }
+  .links.is-off .btn { pointer-events: none; opacity: .45; filter: grayscale(.45); box-shadow: none; }
 
   /* Ekran görüntüleri: yana kaydırılan şerit */
   .shots {
@@ -175,7 +192,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .b { display: none; }
-    .mark, .btn, .shots img { animation: none; transition: none; }
+    .mark, .btn, .shots img, .soon::before { animation: none; transition: none; }
   }
 </style>
 </head>
@@ -212,7 +229,7 @@
     <p class="lead">Tasarımı, oyunu ve yapay zekâyı aynı masada buluşturan bağımsız bir dijital stüdyo. Tek hedefimiz var: insanların kullanmayı gerçekten sevdiği şeyler yapmak.</p>
   </header>
 
-  <article class="app">
+  <article class="app app--pop">
     <div class="app-head">
       <img class="icon" src="poprush-icon.png" width="124" height="124" alt="Kaptan Paprika: Pop Rush simgesi">
       <div>
@@ -243,6 +260,46 @@
       <img src="poprush-5.jpg" width="440" height="956" alt="Korsan adaları ve bölümler" loading="lazy">
       <img src="poprush-6.jpg" width="440" height="956" alt="Albümü doldur, gemini kazan!" loading="lazy">
       <img src="poprush-7.jpg" width="440" height="956" alt="Kayıp hazinenin peşinde!" loading="lazy">
+    </div>
+  </article>
+
+  <article class="app app--bibo">
+    <div class="app-head">
+      <img class="icon" src="bibo-icon.png" width="124" height="124" alt="Bibo Kids simgesi">
+      <div>
+        <div class="title-row">
+          <h2>Bibo Kids: Oyna ve Öğren</h2>
+          <span class="soon">Çok yakında</span>
+        </div>
+        <p>Sevimli civciv Bibo ile oyna, öğren, büyü! 2–7 yaşa özel eğitici oyunlar, İngilizce dersleri ve kısa videolar. Reklamsız ve güvenli.</p>
+        <div class="links is-off" title="Çok yakında" aria-label="Bibo Kids bağlantıları (çok yakında)">
+          <span class="btn primary" aria-disabled="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>
+            App Store'da görüntüle
+          </span>
+          <span class="btn" aria-disabled="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+            Destek
+          </span>
+          <span class="btn" aria-disabled="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/></svg>
+            Gizlilik
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shots" tabindex="0" role="region" aria-label="Bibo Kids ekran görüntüleri">
+      <img src="bibo-1.jpg" width="440" height="956" alt="Oyna, öğren, büyü!">
+      <img src="bibo-2.jpg" width="440" height="956" alt="Yaşına özel eğitici oyunlar">
+      <img src="bibo-3.jpg" width="440" height="956" alt="Okula hazırlık dersleri">
+      <img src="bibo-4.jpg" width="440" height="956" alt="İngilizce sesli öğren" loading="lazy">
+      <img src="bibo-5.jpg" width="440" height="956" alt="Eğitici kısa videolar" loading="lazy">
+      <img src="bibo-6.jpg" width="440" height="956" alt="Gerçek gibi boya!" loading="lazy">
+      <img src="bibo-7.jpg" width="440" height="956" alt="Havaya göre Bibo'yu giydir" loading="lazy">
+      <img src="bibo-8.jpg" width="440" height="956" alt="Sanal bebek Bibo'yu büyüt" loading="lazy">
+      <img src="bibo-9.jpg" width="440" height="956" alt="Saymayı oyunla öğren" loading="lazy">
+      <img src="bibo-10.jpg" width="440" height="956" alt="Ebeveyn paneli" loading="lazy">
     </div>
   </article>
 </main>
