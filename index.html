@@ -75,11 +75,11 @@
 
   /* Üst kısım */
   .hero { text-align: center; }
-  .mark { width: 72px; height: 92px; margin: 0 auto 14px; animation: bob 4s ease-in-out infinite; }
+  .mark { display: block; width: 72px; height: 92px; margin: 0 auto 14px; animation: bob 4s ease-in-out infinite; }
   @keyframes bob { 50% { transform: translateY(-8px) rotate(3deg); } }
   .eyebrow {
-    display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 4px 8px;
-    margin: 0 0 22px; padding: 9px 18px; border-radius: 999px;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px;
+    width: fit-content; max-width: 100%; margin: 0 auto 22px; padding: 9px 18px; border-radius: 999px;
     font-size: 15px; color: var(--muted);
     background: rgba(255, 255, 255, .08); border: 1px solid var(--line);
     -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
