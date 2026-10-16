@@ -108,16 +108,25 @@
     overflow: hidden;
   }
   .app + .app { margin-top: 24px; }
+  .section-label {
+    display: flex; align-items: center; gap: 14px;
+    margin: clamp(44px, 7vw, 64px) 0 18px;
+    font-size: 15px; font-weight: 800; letter-spacing: .06em; color: var(--muted);
+  }
+  .section-label::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+  .section-label + .app { margin-top: 0; }
   .app--pop { background: radial-gradient(520px 280px at 100% 0%, rgba(255, 77, 94, .16), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
+  .app--piko { background: radial-gradient(520px 280px at 100% 0%, rgba(255, 159, 67, .17), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
+  .app--muamma { background: radial-gradient(520px 280px at 100% 0%, rgba(150, 110, 255, .2), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
   .app--bibo { background: radial-gradient(520px 280px at 100% 0%, rgba(255, 211, 77, .17), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
   .app-head { display: flex; align-items: center; gap: 26px; }
   .icon {
     flex: none; width: 124px; height: 124px; border-radius: 28px;
     box-shadow: 0 14px 32px rgba(0, 0, 0, .4), 0 0 0 1px rgba(255, 255, 255, .18);
   }
-  .app h2 { margin: 0 0 6px; font-size: clamp(24px, 3.4vw, 32px); font-weight: 800; letter-spacing: -.01em; }
+  .app h3 { margin: 0 0 6px; font-size: clamp(24px, 3.4vw, 32px); font-weight: 800; letter-spacing: -.01em; }
   .title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 6px; }
-  .title-row h2 { margin: 0; }
+  .title-row h3 { margin: 0; }
   .soon {
     display: inline-flex; align-items: center; gap: 7px;
     padding: 6px 13px; border-radius: 999px;
@@ -125,6 +134,13 @@
     background: linear-gradient(180deg, #a6f5ee, #5fd9d0);
     box-shadow: 0 6px 18px rgba(95, 217, 208, .35), inset 0 1px 0 rgba(255, 255, 255, .6);
   }
+  .tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 13px; border-radius: 999px;
+    font-size: 13px; font-weight: 800; color: #fff;
+    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .22);
+  }
+  .tag::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 8px; border-color: transparent transparent transparent #ff4d5e; }
   .soon::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #0b1633; animation: pulse 1.6s ease-in-out infinite; }
   @keyframes pulse { 50% { opacity: .25; } }
   .app p { margin: 0 0 18px; color: var(--muted); font-size: 17px; line-height: 1.5; }
@@ -164,12 +180,14 @@
   .shots::-webkit-scrollbar { display: none; }
   .shots:focus-visible { outline: 3px solid var(--teal); outline-offset: -3px; border-radius: 20px; }
   .shots img {
-    flex: none; width: 200px; height: auto; aspect-ratio: 440 / 956;
+    flex: none; width: 200px; height: auto;
     border-radius: 20px; scroll-snap-align: start;
     box-shadow: 0 14px 30px rgba(0, 0, 0, .35);
     transition: transform .2s ease;
   }
   .shots img:hover { transform: translateY(-4px); }
+  .shots--wide img { width: 340px; }
+  .icon.icon--round { border-radius: 50%; }
 
   footer {
     position: relative; z-index: 1;
@@ -189,6 +207,7 @@
     .links .btn { flex: 1 1 auto; justify-content: center; }
     .links .btn.primary { flex-basis: 100%; }
     .shots img { width: 158px; border-radius: 16px; }
+    .shots--wide img { width: 262px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .b { display: none; }
@@ -229,11 +248,13 @@
     <p class="lead">Tasarımı, oyunu ve yapay zekâyı aynı masada buluşturan bağımsız bir dijital stüdyo. Tek hedefimiz var: insanların kullanmayı gerçekten sevdiği şeyler yapmak.</p>
   </header>
 
+  <h2 class="section-label">Oyunlar ve uygulamalar</h2>
+
   <article class="app app--pop">
     <div class="app-head">
       <img class="icon" src="poprush-icon.png" width="124" height="124" alt="Kaptan Paprika: Pop Rush simgesi">
       <div>
-        <h2>Kaptan Paprika: Pop Rush</h2>
+        <h3>Kaptan Paprika: Pop Rush</h3>
         <p>Doğru renkteki balonları patlat, adaları keşfet, hazineyi bul!</p>
         <nav class="links" aria-label="Kaptan Paprika: Pop Rush bağlantıları">
           <a class="btn primary" href="https://apps.apple.com/app/id6820898826">
@@ -268,7 +289,7 @@
       <img class="icon" src="bibo-icon.png" width="124" height="124" alt="Bibo Kids simgesi">
       <div>
         <div class="title-row">
-          <h2>Bibo Kids: Oyna ve Öğren</h2>
+          <h3>Bibo Kids: Oyna ve Öğren</h3>
           <span class="soon">Çok yakında</span>
         </div>
         <p>Sevimli civciv Bibo ile oyna, öğren, büyü! 2–7 yaşa özel eğitici oyunlar, İngilizce dersleri ve kısa videolar. Reklamsız ve güvenli.</p>
@@ -300,6 +321,73 @@
       <img src="bibo-8.jpg" width="440" height="956" alt="Sanal bebek Bibo'yu büyüt" loading="lazy">
       <img src="bibo-9.jpg" width="440" height="956" alt="Saymayı oyunla öğren" loading="lazy">
       <img src="bibo-10.jpg" width="440" height="956" alt="Ebeveyn paneli" loading="lazy">
+    </div>
+  </article>
+
+  <h2 class="section-label">Hikâyeler</h2>
+
+  <article class="app app--piko">
+    <div class="app-head">
+      <img class="icon icon--round" src="piko-icon.png" width="124" height="124" alt="Piko Bugs kanal resmi">
+      <div>
+        <div class="title-row">
+          <h3>Piko Bugs</h3>
+          <span class="tag">YouTube · 3 dil</span>
+        </div>
+        <p>Piko Köyü'nde yaşayan dört sevimli böcek Lokum, Zeytin, Bal ve Kestane'nin dostluk dolu kısa çizgi film maceraları. Türkçe, İngilizce ve Rusça.</p>
+        <nav class="links" aria-label="Piko Bugs bağlantıları">
+          <a class="btn primary" href="https://www.youtube.com/@PikoBugs"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+            YouTube'da izle
+          </a>
+          <a class="btn" href="https://www.youtube.com/@PikoBugsGlobal" lang="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
+            English
+          </a>
+          <a class="btn" href="https://www.youtube.com/@PikoBugsRussian" lang="ru"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
+            Русский
+          </a>
+          <a class="btn" href="https://www.instagram.com/pikobugs/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>
+            Instagram
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="shots shots--wide" tabindex="0" role="region" aria-label="Piko Bugs bölüm kapakları">
+      <img src="piko-1.jpg" width="680" height="382" alt="Piko Köyü Büyük Festival">
+      <img src="piko-2.jpg" width="680" height="382" alt="Kayıp Hazine">
+      <img src="piko-3.jpg" width="680" height="382" alt="Ateş Böceği" loading="lazy">
+      <img src="piko-4.jpg" width="680" height="382" alt="Halloween: Balkabağını kim aldı?" loading="lazy">
+      <img src="piko-5.jpg" width="680" height="382" alt="Bal düşüyor" loading="lazy">
+      <img src="piko-6.jpg" width="680" height="382" alt="Yumurta çatlıyor" loading="lazy">
+    </div>
+  </article>
+
+  <article class="app app--muamma">
+    <div class="app-head">
+      <img class="icon icon--round" src="muamma-icon.jpg" width="124" height="124" alt="Muamma kanal resmi">
+      <div>
+        <div class="title-row">
+          <h3>Muamma</h3>
+          <span class="tag">YouTube</span>
+        </div>
+        <p>Tarihin, bilimin ve teknolojinin çözülmemiş gizemlerini kısa ve sinematik videolarla anlatan Türkçe kanal.</p>
+        <nav class="links" aria-label="Muamma bağlantıları">
+          <a class="btn primary" href="https://www.youtube.com/@MuammaTR"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+            YouTube'da izle
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="shots" tabindex="0" role="region" aria-label="Muamma video kapakları">
+      <img src="muamma-1.jpg" width="440" height="782" alt="Kara deliğin sırrı">
+      <img src="muamma-2.jpg" width="440" height="782" alt="Nötron yıldızı">
+      <img src="muamma-3.jpg" width="440" height="782" alt="Uzaydan gelen mesaj: Wow! sinyali">
+      <img src="muamma-4.jpg" width="440" height="782" alt="Hayalet gemi" loading="lazy">
+      <img src="muamma-5.jpg" width="440" height="782" alt="2.000 yıllık bilgisayar" loading="lazy">
+      <img src="muamma-6.jpg" width="440" height="782" alt="Bir şehir bir günde yok oldu" loading="lazy">
+      <img src="muamma-7.jpg" width="440" height="782" alt="Göbeklitepe" loading="lazy">
+      <img src="muamma-8.jpg" width="440" height="782" alt="Simülasyonda mıyız?" loading="lazy">
     </div>
   </article>
 </main>
