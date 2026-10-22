@@ -119,6 +119,7 @@
   .app--piko { background: radial-gradient(520px 280px at 100% 0%, rgba(255, 159, 67, .17), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
   .app--muamma { background: radial-gradient(520px 280px at 100% 0%, rgba(150, 110, 255, .2), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
   .app--bibo { background: radial-gradient(520px 280px at 100% 0%, rgba(255, 211, 77, .17), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
+  .app--esu { background: radial-gradient(520px 280px at 100% 0%, rgba(255, 184, 0, .15), transparent 70%), linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
   .app-head { display: flex; align-items: center; gap: 26px; }
   .icon {
     flex: none; width: 124px; height: 124px; border-radius: 28px;
@@ -165,7 +166,7 @@
   .btn.primary:hover { background: linear-gradient(180deg, #ffe895, #ffcd4a); }
   /* Henüz yayında olmayan uygulamanın düğmeleri: görünür ama tıklanmaz */
   .links.is-off { cursor: not-allowed; }
-  .links.is-off .btn { pointer-events: none; opacity: .45; filter: grayscale(.45); box-shadow: none; }
+  .links.is-off .btn, .btn.is-off { pointer-events: none; opacity: .45; filter: grayscale(.45); box-shadow: none; }
 
   /* Ekran görüntüleri: yana kaydırılan şerit */
   .shots {
@@ -288,25 +289,22 @@
     <div class="app-head">
       <img class="icon" src="bibo-icon.png" width="124" height="124" alt="Bibo Kids simgesi">
       <div>
-        <div class="title-row">
-          <h3>Bibo Kids: Oyna ve Öğren</h3>
-          <span class="soon">Çok yakında</span>
-        </div>
+        <h3>Bibo Kids: Oyna ve Öğren</h3>
         <p>Sevimli civciv Bibo ile oyna, öğren, büyü! 2–7 yaşa özel eğitici oyunlar, İngilizce dersleri ve kısa videolar. Reklamsız ve güvenli.</p>
-        <div class="links is-off" title="Çok yakında" aria-label="Bibo Kids bağlantıları (çok yakında)">
-          <span class="btn primary" aria-disabled="true">
+        <nav class="links" aria-label="Bibo Kids bağlantıları">
+          <a class="btn primary" href="https://apps.apple.com/app/id6819411758">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>
             App Store'da görüntüle
-          </span>
-          <span class="btn" aria-disabled="true">
+          </a>
+          <a class="btn" href="https://sites.google.com/view/bibo-kids-gizlilik">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
             Destek
-          </span>
-          <span class="btn" aria-disabled="true">
+          </a>
+          <a class="btn" href="https://sites.google.com/view/bibo-kids-gizlilik">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/></svg>
             Gizlilik
-          </span>
-        </div>
+          </a>
+        </nav>
       </div>
     </div>
 
@@ -321,6 +319,46 @@
       <img src="bibo-8.jpg" width="440" height="956" alt="Sanal bebek Bibo'yu büyüt" loading="lazy">
       <img src="bibo-9.jpg" width="440" height="956" alt="Saymayı oyunla öğren" loading="lazy">
       <img src="bibo-10.jpg" width="440" height="956" alt="Ebeveyn paneli" loading="lazy">
+    </div>
+  </article>
+
+  <article class="app app--esu">
+    <div class="app-head">
+      <img class="icon" src="esu-icon.png" width="124" height="124" alt="ESU - Ehliyet Sınav Uzmanı simgesi">
+      <div>
+        <div class="title-row">
+          <h3>ESU - Ehliyet Sınav Uzmanı</h3>
+          <span class="soon">Çok yakında</span>
+        </div>
+        <p>Paralel parkı telefonda dene, animasyonlu sorularla e-Sınav'a hazırlan. 400 çıkmış soru, 211 resmî levha. Tek ödeme, abonelik yok, reklam yok.</p>
+        <nav class="links" aria-label="ESU bağlantıları">
+          <span class="btn primary is-off" aria-disabled="true" title="Çok yakında">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>
+            App Store'da görüntüle
+          </span>
+          <a class="btn" href="esu-gizlilik.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+            Destek
+          </a>
+          <a class="btn" href="esu-gizlilik.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/></svg>
+            Gizlilik
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="shots" tabindex="0" role="region" aria-label="ESU ekran görüntüleri">
+      <img src="esu-1.jpg" width="440" height="956" alt="Paralel parkı telefonda dene">
+      <img src="esu-2.jpg" width="440" height="956" alt="Sınavda en çok çıkan 9 konu">
+      <img src="esu-3.jpg" width="440" height="956" alt="Animasyonlu sorular, e-Sınav tarzı">
+      <img src="esu-4.jpg" width="440" height="956" alt="Kaç tur çevireceğini gör" loading="lazy">
+      <img src="esu-5.jpg" width="440" height="956" alt="8 dakika, gerçek sınav gibi" loading="lazy">
+      <img src="esu-6.jpg" width="440" height="956" alt="Sınava kaç gün kaldı?" loading="lazy">
+      <img src="esu-7.jpg" width="440" height="956" alt="Her gün ne çalışacağını bil" loading="lazy">
+      <img src="esu-8.jpg" width="440" height="956" alt="211 resmî levha, kart kart" loading="lazy">
+      <img src="esu-9.jpg" width="440" height="956" alt="Geçince kartını paylaş" loading="lazy">
+      <img src="esu-10.jpg" width="440" height="956" alt="Tek ödeme. Abonelik yok." loading="lazy">
     </div>
   </article>
 
