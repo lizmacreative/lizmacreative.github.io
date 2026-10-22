@@ -9,7 +9,7 @@
 <meta property="og:title" content="Lizma Creative · Hayal Gücü Laboratuvarı">
 <meta property="og:description" content="Tasarımı, oyunu ve yapay zekâyı aynı masada buluşturan bağımsız bir dijital stüdyo. Tek hedefimiz var: insanların kullanmayı gerçekten sevdiği şeyler yapmak.">
 <meta property="og:image" content="https://lizmacreative.github.io/poprush-1.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4c11 0 20 9 20 21 0 13-11 23-20 25C23 48 12 38 12 25 12 13 21 4 32 4z' fill='%23ff4d5e'/%3E%3Cpath d='M28 50h8l-4 6z' fill='%23d63446'/%3E%3Cellipse cx='25' cy='17' rx='5' ry='7' fill='%23fff' opacity='.55'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 2C34 22 42 30 62 32 42 34 34 42 32 62 30 42 22 34 2 32 22 30 30 22 32 2z' fill='%23ffd34d'/%3E%3C/svg%3E">
 <style>
   :root {
     --bg: #0b1633;
@@ -32,7 +32,7 @@
     overflow-x: hidden;
   }
 
-  /* Arkada yavaşça yükselen balonlar */
+  /* Arka plan: yavaşça dalgalanan aurora + fikir kıvılcımları (takımyıldızı) */
   .sky {
     position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
     background:
@@ -40,32 +40,21 @@
       radial-gradient(900px 620px at 108% 18%, #4a2a7c 0%, transparent 62%),
       radial-gradient(1100px 760px at 50% 118%, #0e6f7c 0%, transparent 60%);
   }
-  .b {
-    position: absolute; left: var(--x); bottom: -170px;
-    width: calc(54px * var(--s)); height: calc(66px * var(--s));
-    border-radius: 50% 50% 48% 52% / 58% 58% 42% 42%;
-    background:
-      radial-gradient(circle at 32% 26%, rgba(255, 255, 255, .8) 0 6%, transparent 17%),
-      radial-gradient(circle at 45% 40%, var(--c) 0 55%, var(--k) 100%);
-    opacity: .6;
-    animation: rise var(--d) linear var(--w) infinite;
+  .glow {
+    position: absolute; width: 62vmax; height: 62vmax; border-radius: 50%;
+    filter: blur(60px); opacity: .32; mix-blend-mode: screen;
+    animation: drift var(--d) ease-in-out infinite alternate;
     will-change: transform;
   }
-  .b::before {
-    content: ""; position: absolute; left: 50%; bottom: -7px; transform: translateX(-50%);
-    width: 12px; height: 9px; background: var(--k);
-    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  .glow--a { left: -18vmax; top: 8vh;  background: radial-gradient(circle, #7fe7e0 0%, transparent 62%); --d: 23s; }
+  .glow--b { right: -20vmax; top: -12vh; background: radial-gradient(circle, #a066ff 0%, transparent 62%); --d: 29s; animation-delay: -9s; }
+  .glow--c { left: 22vw; bottom: -30vmax; background: radial-gradient(circle, #ff8fc4 0%, transparent 62%); --d: 34s; animation-delay: -17s; opacity: .22; }
+  @keyframes drift {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    50%  { transform: translate3d(9vw, 6vh, 0) scale(1.12); }
+    100% { transform: translate3d(-5vw, 11vh, 0) scale(.94); }
   }
-  .b::after {
-    content: ""; position: absolute; left: 50%; top: calc(100% + 8px);
-    width: 1.5px; height: calc(70px * var(--s));
-    background: linear-gradient(rgba(255, 255, 255, .55), transparent);
-  }
-  @keyframes rise {
-    0%   { transform: translate3d(0, 0, 0) rotate(-4deg); }
-    50%  { transform: translate3d(22px, calc(-50vh - 120px), 0) rotate(5deg); }
-    100% { transform: translate3d(-8px, calc(-100vh - 280px), 0) rotate(-3deg); }
-  }
+  #sparks { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   .wrap {
     position: relative; z-index: 1;
@@ -75,17 +64,6 @@
 
   /* Üst kısım */
   .hero { text-align: center; }
-  .mark { display: block; width: 72px; height: 92px; margin: 0 auto 14px; animation: bob 4s ease-in-out infinite; }
-  @keyframes bob { 50% { transform: translateY(-8px) rotate(3deg); } }
-  .eyebrow {
-    display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px;
-    width: fit-content; max-width: 100%; margin: 0 auto 22px; padding: 9px 18px; border-radius: 999px;
-    font-size: 15px; color: var(--muted);
-    background: rgba(255, 255, 255, .08); border: 1px solid var(--line);
-    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-  }
-  .eyebrow strong { color: #fff; font-weight: 800; }
-  .eyebrow span { color: var(--teal); font-weight: 700; }
   h1 {
     margin: 0 auto; max-width: 17ch; text-wrap: balance;
     font-size: clamp(36px, 6.6vw, 66px); line-height: 1.06; font-weight: 800; letter-spacing: -.02em;
@@ -195,13 +173,12 @@
     display: flex; align-items: center; justify-content: center; gap: 8px;
     padding: 36px 16px 48px; color: var(--muted); font-size: 15px; opacity: .8;
   }
-  footer svg { width: 18px; height: 22px; }
+  footer svg { width: 18px; height: 18px; }
 
   @media (max-width: 640px) {
     :root { --pad: 20px; }
     .wrap { padding-left: 16px; padding-right: 16px; }
-    .eyebrow { font-size: 13.5px; padding: 8px 14px; gap: 4px 6px; }
-    .b { opacity: .38; }
+    .glow { opacity: .24; }
     .app { border-radius: 28px; }
     .app-head { flex-direction: column; align-items: flex-start; gap: 18px; }
     .icon { width: 96px; height: 96px; border-radius: 22px; }
@@ -211,40 +188,22 @@
     .shots--wide img { width: 262px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .b { display: none; }
-    .mark, .btn, .shots img, .soon::before { animation: none; transition: none; }
+    .glow { animation: none; }
+    .btn, .shots img, .soon::before { animation: none; transition: none; }
   }
 </style>
 </head>
 <body>
 
 <div class="sky" aria-hidden="true">
-  <span class="b" style="--x:5%;  --s:1;    --d:26s; --w:-3s;  --c:#ff4d5e; --k:#c22c3d"></span>
-  <span class="b" style="--x:17%; --s:.7;   --d:31s; --w:-17s; --c:#ffd34d; --k:#d9a21a"></span>
-  <span class="b" style="--x:30%; --s:.85;  --d:24s; --w:-11s; --c:#3ddc84; --k:#1f9d58"></span>
-  <span class="b" style="--x:46%; --s:.6;   --d:34s; --w:-25s; --c:#a066ff; --k:#6f3ad1"></span>
-  <span class="b" style="--x:62%; --s:.95;  --d:28s; --w:-6s;  --c:#3d8bff; --k:#1f5fc9"></span>
-  <span class="b" style="--x:76%; --s:.75;  --d:22s; --w:-15s; --c:#ff9f43; --k:#d66f12"></span>
-  <span class="b" style="--x:88%; --s:1.1;  --d:30s; --w:-21s; --c:#ff6fb5; --k:#cf3f86"></span>
-  <span class="b" style="--x:95%; --s:.55;  --d:27s; --w:-9s;  --c:#ffd34d; --k:#d9a21a"></span>
+  <div class="glow glow--a"></div>
+  <div class="glow glow--b"></div>
+  <div class="glow glow--c"></div>
+  <canvas id="sparks"></canvas>
 </div>
 
 <main class="wrap">
   <header class="hero">
-    <svg class="mark" viewBox="0 0 72 92" aria-hidden="true">
-      <defs>
-        <radialGradient id="bg1" cx="38%" cy="32%" r="70%">
-          <stop offset="0" stop-color="#ff8a94"/>
-          <stop offset=".55" stop-color="#ff4d5e"/>
-          <stop offset="1" stop-color="#c22c3d"/>
-        </radialGradient>
-      </defs>
-      <path d="M36 66c-2 8 4 12 0 24" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linecap="round"/>
-      <path d="M36 4c17 0 30 13 30 30 0 18-15 30-30 32C21 64 6 52 6 34 6 17 19 4 36 4z" fill="url(#bg1)"/>
-      <path d="M31 66h10l-5 7z" fill="#c22c3d"/>
-      <ellipse cx="25" cy="22" rx="6.5" ry="10" transform="rotate(-20 25 22)" fill="#fff" opacity=".55"/>
-    </svg>
-    <p class="eyebrow"><strong>Lizma Creative</strong> · <span>Hayal Gücü Laboratuvarı</span></p>
     <h1>Fikirleri <span class="w1">oyuna</span>, <span class="w2">uygulamaya</span> ve <span class="w3">hikâyeye</span> dönüştürüyoruz.</h1>
     <p class="lead">Tasarımı, oyunu ve yapay zekâyı aynı masada buluşturan bağımsız bir dijital stüdyo. Tek hedefimiz var: insanların kullanmayı gerçekten sevdiği şeyler yapmak.</p>
   </header>
@@ -431,9 +390,133 @@
 </main>
 
 <footer>
-  <svg viewBox="0 0 72 92" aria-hidden="true"><path d="M36 4c17 0 30 13 30 30 0 18-15 30-30 32C21 64 6 52 6 34 6 17 19 4 36 4z" fill="#ff4d5e"/><path d="M31 66h10l-5 7z" fill="#c22c3d"/></svg>
+  <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 2C34 22 42 30 62 32 42 34 34 42 32 62 30 42 22 34 2 32 22 30 30 22 32 2z" fill="#ffd34d"/></svg>
   Lizma Creative · Hayal Gücü Laboratuvarı
 </footer>
 
+<script>
+/* Fikir kıvılcımları: süzülen ışık noktaları birbirine yaklaşınca ince çizgilerle bağlanır;
+   fare/parmak yaklaşınca ona da bağlanır. Hareket azaltma açıksa tek kare çizilir. */
+(() => {
+  const cv = document.getElementById('sparks');
+  if (!cv || !cv.getContext) return;
+  const ctx = cv.getContext('2d');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const COLORS = ['255,211,77', '127,231,224', '255,143,196', '176,140,255', '255,255,255'];
+  const LINK = 150, PTR = 190;
+  let W = 0, H = 0, dpr = 1, pts = [], meteors = [], raf = 0, last = 0;
+  const ptr = { x: -9999, y: -9999, on: false };
+
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  function make() {
+    const big = Math.random() < .14;
+    return {
+      x: rnd(0, W), y: rnd(0, H),
+      vx: rnd(-.12, .12), vy: rnd(-.16, -.02),        // hafifçe yukarı süzülür
+      r: big ? rnd(2.4, 3.6) : rnd(.8, 1.9),
+      star: big,                                      // büyükler 4 köşeli parıltı
+      c: COLORS[(Math.random() * COLORS.length) | 0],
+      ph: rnd(0, Math.PI * 2), tw: rnd(.6, 1.6),        // yanıp sönme
+      rot: rnd(0, Math.PI), vr: rnd(-.004, .004)
+    };
+  }
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.min(90, Math.max(34, W * H / 15000)));
+    while (pts.length < n) pts.push(make());
+    pts.length = n;
+  }
+  function sparkle(x, y, r, rot) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
+    ctx.beginPath();
+    for (let i = 0; i < 4; i++) {
+      ctx.rotate(Math.PI / 2);
+      ctx.moveTo(0, 0); ctx.quadraticCurveTo(r * .35, r * .35, 0, r * 2.6);
+      ctx.quadraticCurveTo(-r * .35, r * .35, 0, 0);
+    }
+    ctx.fill(); ctx.restore();
+  }
+  function frame(t) {
+    const dt = Math.min(48, t - (last || t)) / 16.67; last = t;
+    ctx.clearRect(0, 0, W, H);
+    const time = t / 1000;
+
+    for (const p of pts) {
+      // fareye doğru çok hafif çekim
+      if (ptr.on) {
+        const dx = ptr.x - p.x, dy = ptr.y - p.y, d2 = dx * dx + dy * dy;
+        if (d2 < PTR * PTR && d2 > 1) { const f = .006 / Math.sqrt(d2); p.vx += dx * f * dt; p.vy += dy * f * dt; }
+      }
+      p.vx *= .995; p.vy = p.vy * .995 + (-.06 - p.vy) * .002;
+      p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt;
+      if (p.y < -20) { p.y = H + 20; p.x = rnd(0, W); }
+      if (p.y > H + 20) p.y = -20;
+      if (p.x < -20) p.x = W + 20; else if (p.x > W + 20) p.x = -20;
+    }
+
+    // takımyıldızı çizgileri
+    ctx.lineWidth = 1;
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[i];
+      for (let j = i + 1; j < pts.length; j++) {
+        const b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+        if (d2 < LINK * LINK) {
+          const k = 1 - Math.sqrt(d2) / LINK;
+          ctx.strokeStyle = `rgba(${a.c},${(k * k * .38).toFixed(3)})`;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      if (ptr.on) {
+        const dx = a.x - ptr.x, dy = a.y - ptr.y, d = Math.hypot(dx, dy);
+        if (d < PTR) {
+          ctx.strokeStyle = `rgba(${a.c},${((1 - d / PTR) * .5).toFixed(3)})`;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(ptr.x, ptr.y); ctx.stroke();
+        }
+      }
+    }
+
+    // kıvılcımlar
+    for (const p of pts) {
+      const tw = .55 + .45 * Math.sin(time * p.tw + p.ph);
+      ctx.fillStyle = `rgba(${p.c},${(.35 + .6 * tw).toFixed(3)})`;
+      ctx.shadowColor = `rgba(${p.c},.9)`; ctx.shadowBlur = p.star ? 14 : 6;
+      if (p.star) sparkle(p.x, p.y, p.r * (.75 + .35 * tw), p.rot);
+      else { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); }
+    }
+    ctx.shadowBlur = 0;
+
+    // ara sıra kayan yıldız
+    if (!still && Math.random() < .0025 * dt && meteors.length < 2) {
+      meteors.push({ x: rnd(W * .1, W * .9), y: rnd(0, H * .4), vx: rnd(5, 8) * (Math.random() < .5 ? -1 : 1), vy: rnd(2.5, 4), life: 1 });
+    }
+    meteors = meteors.filter(m => {
+      m.x += m.vx * dt; m.y += m.vy * dt; m.life -= .018 * dt;
+      if (m.life <= 0) return false;
+      const g = ctx.createLinearGradient(m.x, m.y, m.x - m.vx * 14, m.y - m.vy * 14);
+      g.addColorStop(0, `rgba(255,255,255,${m.life * .9})`); g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.strokeStyle = g; ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(m.x - m.vx * 14, m.y - m.vy * 14); ctx.stroke();
+      return true;
+    });
+
+    if (!still) raf = requestAnimationFrame(frame);
+  }
+
+  addEventListener('resize', resize);
+  addEventListener('pointermove', e => { ptr.x = e.clientX; ptr.y = e.clientY; ptr.on = true; }, { passive: true });
+  addEventListener('pointerleave', () => { ptr.on = false; });
+  document.addEventListener('mouseleave', () => { ptr.on = false; });
+  addEventListener('touchend', () => { ptr.on = false; }, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    cancelAnimationFrame(raf);
+    if (!document.hidden && !still) { last = 0; raf = requestAnimationFrame(frame); }
+  });
+  resize();
+  raf = requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
